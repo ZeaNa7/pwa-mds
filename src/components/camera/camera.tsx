@@ -44,7 +44,7 @@ const CameraComponent: React.FC = () => {
         const blob = new Blob(chunksRef.current, { type: 'video/mp4' });
         const videoURL = URL.createObjectURL(blob);
         setVideos((prevPhotos) => [...prevPhotos, videoURL]);
-        const blobCopy = blob;
+        // const blobCopy = blob;
         // pictureStore.setVideos([...(pictureStore.videos || []), blobCopy]);
         chunksRef.current = [];
       };
