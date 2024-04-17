@@ -3,6 +3,7 @@ import { AppBar, Box, Toolbar, Typography, IconButton, Menu, MenuItem } from '@m
 import { Link } from 'react-router-dom';
 import FlightIcon from '@mui/icons-material/Flight';
 import MenuIcon from '@mui/icons-material/Menu';
+import BatteryIndicator from '../components/battery-indicator';
 
 const App: React.FC = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -17,7 +18,7 @@ const App: React.FC = () => {
 
   return (
     <AppBar color="transparent" position="static">
-      <Toolbar>
+      <Toolbar className='flex justify-around'>
         <IconButton
           edge="start"
           color="inherit"
@@ -63,6 +64,7 @@ const App: React.FC = () => {
             </Link>
           </Typography>
         </Box>
+          <BatteryIndicator />
         {/* Menu déroulant pour les petits écrans */}
         <Menu
           anchorEl={anchorEl}

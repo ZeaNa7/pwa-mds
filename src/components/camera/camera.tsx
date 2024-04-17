@@ -44,7 +44,7 @@ const CameraComponent: React.FC = () => {
         const blob = new Blob(chunksRef.current, { type: 'video/mp4' });
         const videoURL = URL.createObjectURL(blob);
         setVideos((prevPhotos) => [...prevPhotos, videoURL]);
-        // const blobCopy = blob;
+        const blobCopy = blob;
         // pictureStore.setVideos([...(pictureStore.videos || []), blobCopy]);
         chunksRef.current = [];
       };
@@ -86,24 +86,25 @@ const CameraComponent: React.FC = () => {
   }, [pictures]);
 
   return (
-    <div className='flex flex-col justify-center items-center h-screen'>
-      <div className="m-4">
-        <Button variant="contained" onClick={takePhoto} sx={{mr: 3}}>
+    <div>
+      <video ref={videoRef} width="50%" height="auto" autoPlay></video>
+      <canvas ref={canvasRef} style={{ display: 'none', width: '100%', height: 'auto' }}></canvas>
+
+      <div className="m-10">
+        <Button variant="outlined" onClick={takePhoto}>
           Take Photo
         </Button>
         {!isRecording ? (
-          <Button variant="contained" onClick={startRecording}>
+          <Button variant="outlined" onClick={startRecording}>
             Start Recording
           </Button>
         ) : (
-          <Button variant="contained" onClick={stopRecording}>
+          <Button variant="outlined" onClick={stopRecording}>
             Stop Recording
           </Button>
         )}
       </div>
 
-      <video ref={videoRef} width="50%" height="auto" autoPlay></video>
-      <canvas ref={canvasRef} style={{ display: 'none', width: '100%', height: 'auto' }}></canvas>
       {pictures.map((photo, index) => (
         <div key={index} style={{ display: 'flex' }}>
           <img src={photo} alt="captured" width="50%" height="auto"/>

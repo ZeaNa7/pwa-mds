@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import BatteryFullIcon from '@material-ui/icons/BatteryFull';
 
 const BatteryIndicator: React.FC = () => {
   const [batteryLevel, setBatteryLevel] = useState<number | null>(null);
@@ -16,7 +17,7 @@ const BatteryIndicator: React.FC = () => {
     }
   }, []);
 
-  return <div className="flex items-center">{batteryLevel !== null ? <span className="mr-2">Battery Level: {batteryLevel}%</span> : <span>Unavailable</span>}</div>;
+  return <div className="flex items-center">{batteryLevel !== null ? <span className="mr-2"><BatteryFullIcon /> {batteryLevel}%</span> : <span>Unavailable</span>}</div>;
 };
 
 export default BatteryIndicator;
